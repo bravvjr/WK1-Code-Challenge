@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Generator</title>
+    <style>
+        body{
+            background-image: url(./us-grading-system.avif);
+            background-size: cover;
+            background-color: rgba(255, 255, 255, 0.847);
+            background-blend-mode: lighten;
+            padding: 150px;
+
+        }
+
+        .container {
+            padding: 100px;
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+            backdrop-filter: blur(10px);
+
+        }
+
+        input[type="text"] {
+            width: 65%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+        }
+        button {
+            padding: 10px;
+            width: 30%;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9); /* Drop shadow */
+
+        }
+        p {
+            font-weight: bold;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Grade Generator</h1>
+    
+        <form id="gradeForm">
+            <p>Enter your marks below (between 0 and 100):</p>
+            <input type="text" id="marksInput" placeholder="Enter marks">
+            <button type="submit">Get Grade</button>
+        </form>
+    
+        <div id="result"></div>
+    </div>
+
+<script>
+    // Function to calculate grade based on marks
+    function calculateGrade(marks) {
+        if (marks > 100 || marks < 0) {
+            return "Invalid marks! Please enter a number between 0 and 100.";
+        } else if (marks > 79) {
+            return "Grade: A";
+        } else if (marks >= 60) {
+            return "Grade: B";
+        } else if (marks >= 49) {
+            return "Grade: C";
+        } else if (marks >= 40) {
+            return "Grade: D";
+        } else {
+            return "Grade: E";
+        }
+    }
+
+    // Adding event listener for form submission
+    document.getElementById('gradeForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevents the form from refreshing the page
+
+        // Get the input value
+        let marks = document.getElementById('marksInput').value;
+
+        // Convert the input to a number
+        marks = Number(marks);
+
+        // Calculate the grade
+        const result = calculateGrade(marks);
+
+        // Display the result on the page
+        document.getElementById('result').innerText = result;
+    });
+</script>
+</body>
+</html>

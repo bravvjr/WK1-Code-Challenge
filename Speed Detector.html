@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Checker</title>
+    <style>
+         body{
+            background-image: url(./TKPXTJE245B5DANNQ7RSTE2K6Q.avif);
+            background-size: cover;
+            background-color: rgba(255, 255, 255, 0.89);
+            background-blend-mode: lighten;
+            background-size: cover;
+            padding: 150px;
+
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+            backdrop-filter: blur(10px);
+
+
+        }
+
+        input[type="text"] {
+            width: 65%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+        }
+
+        button {
+            padding: 10px;
+            width: 30%;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.9); /* Drop shadow */
+
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Car Speed Checker</h1>
+
+    <form id="speedForm">
+        <p>Enter the speed of the car (km/h):</p>
+        <input type="text" id="speedInput" placeholder="Enter speed">
+        <button type="submit">Check Speed</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    // Function that calculates demerit points based on speed
+    function checkSpeed(speed) {
+        const speedLimit = 70;
+        const demeritPointIncrement = 5;
+
+        if (speed < speedLimit) {
+            return "Ok";
+        } else {
+            let points = Math.floor((speed - speedLimit) / demeritPointIncrement);
+            if (points > 12) {
+                return "License suspended";
+            } else {
+                return `Points: ${points}`;
+            }
+        }
+    }
+
+    // Event listener for form submission
+    document.getElementById('speedForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevents the form from refreshing the page
+
+        // Get the input value
+        let speed = document.getElementById('speedInput').value;
+
+        // Convert the input to a number
+        speed = Number(speed);
+
+        // Calculate the result
+        const result = checkSpeed(speed);
+
+        // Display the result on the page
+        document.getElementById('result').innerText = result;
+    });
+</script>
+
+</body>
+</html>
